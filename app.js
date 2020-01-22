@@ -11,31 +11,40 @@ app.use(cors());
 app.get('/movie', (req, res) => {
   const {genre, country, avg_vote} = req.query;
   let filteredMovies = [ ...movies ];
-  const genreList = ['Grotesque', 'Animation', 'Drama', 'Romantic', 'Comedy', 'Spy', 'Crime', 'Thriller', 'Adventure', 'Documentary', 'Horror', 'Action', 'Musical', 'Biography'];
   // genre
   if(genre) {
     // if genre doesn't exist, return error code
-    if(!genreList.includes(genre)) {
-      return res.status(400).json({error: 'Genre must be one of the following: ......'});
+    if(!filteredMovies.find(movie => movie['genre'].toLowerCase() === genre.toLowerCase())) {
+      return res.status(400).json({error: 'Genre not found.'});
     }
     // since each movie only has 1 genre, filter for specified genre
-    filteredMovies = filteredMovies.filter(movie => movie.genre === genre);
+    filteredMovies = filteredMovies.filter(movie => movie['genre'].toLowerCase() === genre.toLowerCase());
   }
 
   // country
-if(country){
-  if(!filteredMovies.find(each=>each.country===country)){
-    
-     return res.status(400).json({error:"Country not found"})
+  if(country){
+    // if country doesn't exist, return error code
+    if(!filteredMovies.find(each=>each.country===country)){
+      return res.status(400).json({error:'Country not found.'});
+    }
+    // filter for specified country
+
   }
 
-}
-
-
-
-
   // avg_vote
-  
+  if(avg_vote){
+    // if avg vote is invalid, return error code
+    if(isNaN(avg_vote)) {
+      return res.status(400).json({error: 'Average vote has to be a number.'});
+    }
+    if(avg_vote<0 || avg_vote>10) {
+      return res.status(400).json({error: 'Average vote has to be between 0-10.'});
+    }
+    // filter movie for avg vote >= the specified vote
+    filteredMovies = filteredMovies.filter(movie => movie['avg_vote'] >= Number(avg_vote));
+  }
+
+
   res.json(filteredMovies);
 });
 
