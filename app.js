@@ -23,6 +23,17 @@ app.get('/movie', (req, res) => {
   }
 
   // country
+if(country){
+  if(!filteredMovies.find(each=>each.country===country)){
+    
+     return res.status(400).json({error:"Country not found"})
+  }
+
+}
+
+
+
+
   // avg_vote
   
   res.json(filteredMovies);
