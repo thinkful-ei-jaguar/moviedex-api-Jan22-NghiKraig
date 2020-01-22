@@ -1,0 +1,27 @@
+{
+  "name": "moviedex-api-Jan22-NghiKraig",
+  "version": "1.0.0",
+  "description": "Movie api collab",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-jaguar/moviedex-api-Jan22-NghiKraig.git"
+  },
+  "keywords": [],
+  "author": "nghi and kraig",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-jaguar/moviedex-api-Jan22-NghiKraig/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-jaguar/moviedex-api-Jan22-NghiKraig#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2"
+  }
+}
