@@ -24,11 +24,11 @@ app.get('/movie', (req, res) => {
 
   // country
 if(country){
-  if(!filteredMovies.find(each=>each.country===country)){
+  if(!filteredMovies.find(each=>each.country.includes(country))){
     
      return res.status(400).json({error:"Country not found"})
   }
-
+return res.status(200).send(`Found ${country}`)
 }
 
 
